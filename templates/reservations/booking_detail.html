@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Бронь #{{ booking.id }}{% endblock %}
+
+{% block content %}
+<section class="card">
+  <h1>Бронь #{{ booking.id }}</h1>
+
+  <div class="kv">
+    <div><b>Телефон:</b> +7 *** {{ booking.phone|slice:"-5:" }}</div>
+    <div><b>Дата:</b> {{ booking.date }}</div>
+    <div><b>Время:</b> {{ booking.start_time }}–{{ booking.end_time }}</div>
+    <div><b>Цена:</b> {{ booking.price_rub }} ₽</div>
+    <div><b>Статус:</b> <span class="badge badge--{{ booking.status }}">{{ booking.get_status_display }}</span></div>
+  </div>
+
+  {% if booking.status != "paid" %}
+    <a class="btn" href="{% url 'payment_start' booking.id %}">Оплатить</a>
+  {% endif %}
+  <h2 class="kv">В случае необходимости отмены бронирования, необходимо связаться с администратором по номеру телефона +798812345678</h2>
+</section>
+{% endblock %}

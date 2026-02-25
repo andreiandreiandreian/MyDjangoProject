@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Оплата{% endblock %}
+
+{% block content %}
+<section class="card">
+  <h1>Оплата (тестовый режим)</h1>
+  <p>Бронь #{{ booking.id }} — {{ booking.date }} {{ booking.start_time }}–{{ booking.end_time }}</p>
+  <p><b>К оплате:</b> {{ payment.amount_rub }} ₽</p>
+
+  <div class="actions">
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="success">
+      <button class="btn" type="submit">✅ Оплатить успешно (тест)</button>
+    </form>
+
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="fail">
+      <button class="btn btn--ghost" type="submit">❌ Ошибка оплаты (тест)</button>
+    </form>
+  </div>
+
+  <p class="hint">
+    Дальше это заменим на реальную оплату (например, ЮKassa/CloudPayments/СБП).
+  </p>
+</section>
+{% endblock %}

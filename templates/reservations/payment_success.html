@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Оплачено{% endblock %}
+
+{% block content %}
+<section class="card">
+  <h1>Оплата прошла успешно ✅</h1>
+  <p>Бронь #{{ booking.id }} подтверждена.</p>
+  <a class="btn" href="{% url 'booking_detail' booking.id %}">Открыть бронь</a>
+</section>
+{% endblock %}
