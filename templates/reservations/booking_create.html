@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Бронирование{% endblock %}
+
+{% block content %}
+<section class="card">
+  <h1>Создать бронирование</h1>
+
+  <form method="post" class="form">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+      <div class="alert alert--error">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <div class="form__grid">
+      <label>
+        <span>ФИО</span>
+        {{ form.full_name }}
+        {{ form.full_name.errors }}
+      </label>
+
+      <label>
+        <span>Телефон</span>
+        {{ form.phone }}
+        {{ form.phone.errors }}
+      </label>
+
+      <label>
+        <span>Дата</span>
+        {{ form.date }}
+        {{ form.date.errors }}
+      </label>
+
+      <label>
+        <span>Начало</span>
+        {{ form.start_time }}
+        {{ form.start_time.errors }}
+      </label>
+
+      <label>
+        <span>Конец</span>
+        {{ form.end_time }}
+        {{ form.end_time.errors }}
+      </label>
+    </div>
+
+    <button class="btn" type="submit">Перейти к оплате</button>
+    <p class="hint">Минимальная бронь — 1 час. Время выбирается с шагом 30 минут.</p>
+  </form>
+</section>
+{% endblock %}

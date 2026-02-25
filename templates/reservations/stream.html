@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Трансляция{% endblock %}
+
+{% block content %}
+<section class="card">
+  <h1>Трансляция с поля (тест)</h1>
+  <p class="hint">В тестовом режиме показываем RuTube. Потом заменим на камеру с крыши.</p>
+
+  <div class="video">
+    <iframe
+      src="https://rutube.ru/play/embed/428d2ec66acbdda8bf41a57808f34004/"
+      frameborder="0"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen
+      class="video__frame"
+      title="Трансляция">
+    </iframe>
+  </div>
+</section>
+{% endblock %}
+
+

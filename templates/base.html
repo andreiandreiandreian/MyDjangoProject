@@ -1,0 +1,77 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{% block title %}Бронирование поля{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <header class="header">
+    <div class="container header__row">
+      <a class="logo" href="{% url 'home' %}">⚽ Поле "НА КОРОНЕ"</a>
+      <nav class="nav">
+  <a href="{% url 'booking_create' %}">Забронировать</a>
+  <a href="{% url 'stream' %}">Трансляция</a>
+
+  {% if user.is_authenticated %}
+    <!-- Выйти -->
+    <form method="post" action="{% url 'logout' %}" class="logout-form">
+      {% csrf_token %}
+      <button type="submit" class="admin-link">Выйти</button>
+    </form>
+  {% else %}
+    <!-- Войти -->
+    <a href="/admin/login/" class="admin-link">Войти</a>
+  {% endif %}
+</nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <script src="{% static 'js/booking.js' %}"></script>
+  {% block scripts %}{% endblock %}
+
+
+
+  <footer class="footer">
+    <div class="container footer__grid">
+
+      <div class="footer__col">
+        <h3>⚽ Поле "НА КОРОНЕ"</h3>
+        <p class="footer__text">
+          Современное футбольное поле с онлайн-бронированием и прямой трансляцией.
+        </p>
+      </div>
+
+      <div class="footer__col">
+        <h4>Контакты</h4>
+        <p>📞 <a href="tel:+79991234567">+7 (999) 123-45-67</a></p>
+        <p>📧 <a href="mailto:info@korona-field.ru">info@korona-field.ru</a></p>
+        <p>📍 Владикавказ, набережная р. Терек</p>
+      </div>
+
+      <div class="footer__col">
+        <h4>Часы работы</h4>
+        <p>Пн–Вс: 08:00 – 23:00</p>
+        <p>Без выходных</p>
+      </div>
+
+      <div class="footer__col">
+        <h4>Навигация</h4>
+        <p><a href="{% url 'booking_create' %}">Бронирование</a></p>
+        <p><a href="{% url 'stream' %}">Онлайн трансляция</a></p>
+      </div>
+
+    </div>
+
+
+  </footer>
+
+</body>
+</html>
